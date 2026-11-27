@@ -1,0 +1,235 @@
+/* =====================================================================
+   Exercise 0.2 — Responsive evidence UI
+   Legacy React 7 fix: no rigid 800px container → container queries,
+   fluid clamp() sizing, 100dvh shell, 44x44px touch targets (WCAG 2.2)
+   ===================================================================== */
+
+/* ---------- Tab panel becomes a query container ---------- */
+.tab-panel {
+  container-type: inline-size;
+  container-name: panel;
+}
+
+/* ---------- Filter bar ---------- */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-block-end: 1rem;
+}
+
+.filter-bar__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter-bar__chip {
+  min-block-size: 44px;
+  min-inline-size: 44px;
+  padding: 0 1rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.filter-bar__chip[aria-pressed='true'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+  font-weight: 600;
+}
+
+.filter-bar__count {
+  opacity: 0.8;
+}
+
+.filter-bar__size {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+}
+
+.filter-bar__size select {
+  min-block-size: 44px;
+  padding: 0 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+}
+
+/* ---------- Evidence grid: layout follows CONTAINER width, not viewport ---------- */
+.evidence-container {
+  container-type: inline-size;
+  container-name: evidence;
+}
+
+.evidence-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(0.75rem, 2cqi, 1.25rem);
+}
+
+@container evidence (min-width: 34rem) {
+  .evidence-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@container evidence (min-width: 54rem) {
+  .evidence-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* ---------- Evidence card ---------- */
+.evidence-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: clamp(0.875rem, 3cqi, 1.25rem);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+}
+
+.evidence-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.evidence-card__tag {
+  padding: 0.125rem 0.625rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  color: var(--text);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.evidence-card__duration {
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.875rem;
+}
+
+.evidence-card__title {
+  margin: 0;
+  font-size: clamp(1rem, 0.5rem + 2.5cqi, 1.25rem);
+  line-height: 1.3;
+}
+
+.evidence-card__summary {
+  margin: 0;
+  flex: 1;
+  color: var(--text-muted);
+}
+
+.evidence-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  padding-block-start: 0.5rem;
+  border-block-start: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+/* ---------- Status messages ---------- */
+.evidence-status {
+  padding: 1rem;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  color: var(--text-muted);
+}
+
+.evidence-status--error {
+  border-color: #e5534b;
+  color: var(--text);
+}
+
+/* ---------- Pagination ---------- */
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-block-start: 1.25rem;
+}
+
+.pagination__summary {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.pagination__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+}
+
+.pagination__btn {
+  min-block-size: 44px;
+  min-inline-size: 44px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pagination__btn[aria-current='page'] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+.pagination__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ---------- Narrow panel: stack controls ---------- */
+@container panel (max-width: 30rem) {
+  .filter-bar,
+  .pagination {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pagination__controls {
+    justify-content: center;
+  }
+}
+
+/* ---------- Shared focus ring ---------- */
+.filter-bar__chip:focus-visible,
+.filter-bar__size select:focus-visible,
+.pagination__btn:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}

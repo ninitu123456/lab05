@@ -20,5 +20,5 @@ Status: ⬜ todo · 🟨 in progress · ✅ done
 | 2 | Mock data + `useEvidenceLoader` | Fetch uses `AbortController`; aborted on unmount; no state update after unmount | ✅ |
 | 3 | `EvidenceCard` + `EvidenceGrid` | Filter + slice derived via `useMemo` in render; zero secondary `useEffect`; `key={item._id}` | ✅ |
 | 4 | `FilterBar` + `Pagination` | Tags & `totalPages` derived; out-of-range page clamped at render; 44px targets | ✅ |
-| 5 | Responsive layout | `@container` queries, `100dvh`, `clamp()`; no fixed 800px container | ⬜ |
+| 5 | Responsive layout | `@container` queries, `100dvh`, `clamp()`; no fixed 800px container | ✅ |
 | 6 | Integration + verification | Evidence tab works; Challenge B criteria met; zero console key warnings | ⬜ |
