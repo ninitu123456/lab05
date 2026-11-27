@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { Reel } from '../models/Reel.js';
+import { validateObjectId } from '../middleware/validateObjectId.js';
 
 /**
  * Express 5 atomic reels endpoints (contract: Slides 13 & 25).
@@ -7,6 +8,9 @@ import { Reel } from '../models/Reel.js';
  * automatically → no try/catch boilerplate, no Mongoose callbacks (Slide 29 #03).
  */
 export const reelsRouter = Router();
+
+// Every route with :id is guarded once, here → malformed id = 400, no DB hit
+reelsRouter.param('id', validateObjectId);
 
 // GET /api/v2/reels — newest first; lean() returns plain JSON (no hydration cost)
 reelsRouter.get('/', async (req, res) => {
