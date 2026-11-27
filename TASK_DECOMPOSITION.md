@@ -38,3 +38,14 @@ Status: ⬜ todo · 🟨 in progress · ✅ done
 | 6 | Integration + verification | Rapid scroll pauses offscreen video; ~60fps in Performance panel | ✅ |
 
 **Exercise 1.1 result:** ✅ Done — 6/12 commits. Verification: `docs/verification/ex1.1-reels.md`
+
+
+## Exercise 1.2 — Express 5 & Mongoose 8 Atomic $inc
+| # | Task | Acceptance Criteria | Status |
+|---|------|---------------------|--------|
+| 1 | Scaffold `server/` | Express 5 + Mongoose 8 pinned; no `useNewUrlParser`/`useUnifiedTopology`; `/api/health` reports DB state; `.env` ignored | ✅ |
+| 2 | `Reel` model | `endorsements: { type: Number, default: 0, min: 0 }` replaces legacy `likes: String` | ⬜ |
+| 3 | Seed script | Imports `reels.json` with fixed `_id`s; idempotent re-run | ⬜ |
+| 4 | Reels routes | `GET /api/v2/reels`; `PATCH /api/v2/reels/:id/endorse` via `findByIdAndUpdate` + `$inc`, `{ new: true, runValidators: true }`, 404 if missing | ⬜ |
+| 5 | Error pipeline | Express 5 async errors → central handler; invalid id → 400; unknown route → 404; no stack leak | ⬜ |
+| 6 | Concurrency stress test | 100 parallel PATCH → `endorsements === 100` | ⬜ |
