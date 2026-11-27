@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import { reelsRouter } from './routes/reels.js';
 
 // App is exported separately from listen() → testable without opening a port
 export const app = express();
@@ -14,3 +15,6 @@ app.get('/api/health', (req, res) => {
     uptimeSec: Math.round(process.uptime()),
   });
 });
+
+// Versioned resource mount → routes inside the router stay short ('/:id/endorse')
+app.use('/api/v2/reels', reelsRouter);
