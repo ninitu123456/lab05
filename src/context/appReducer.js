@@ -1,4 +1,4 @@
-// Pure reducer — Lab 5 Exercises 0.1 & 0.2
+// Pure reducer — Lab 5 Exercises 0.1, 0.2 & 1.1
 // Rules: no fetch, no DOM, no localStorage, no mutation. Same input → same output.
 
 export const ActionTypes = Object.freeze({
@@ -13,6 +13,10 @@ export const ActionTypes = Object.freeze({
   SET_FILTER_TAG: 'evidence/filterTagSet',
   SET_PAGE: 'evidence/pageSet',
   SET_PAGE_SIZE: 'evidence/pageSizeSet',
+  // Exercise 1.1
+  REELS_LOAD_START: 'reels/loadStart',
+  REELS_LOAD_SUCCESS: 'reels/loadSuccess',
+  REELS_LOAD_FAILURE: 'reels/loadFailure',
 });
 
 export const THEMES = Object.freeze(['dark', 'light']);
@@ -30,6 +34,10 @@ export const initialState = Object.freeze({
   filterTag: '', // '' = all tags
   currentPage: 1,
   pageSize: 6,
+  // Exercise 1.1
+  reelList: [],
+  reelStatus: 'idle', // 'idle' | 'loading' | 'success' | 'error'
+  reelError: null,
 });
 
 const isPositiveInt = (n) => Number.isInteger(n) && n > 0;
@@ -71,6 +79,16 @@ export function appReducer(state, action) {
     case ActionTypes.SET_PAGE_SIZE:
       if (!PAGE_SIZES.includes(action.payload) || action.payload === state.pageSize) return state;
       return { ...state, pageSize: action.payload, currentPage: 1 };
+
+    case ActionTypes.REELS_LOAD_START:
+      return { ...state, reelStatus: 'loading', reelError: null };
+
+    case ActionTypes.REELS_LOAD_SUCCESS:
+      if (!Array.isArray(action.payload)) return state;
+      return { ...state, reelList: action.payload, reelStatus: 'success', reelError: null };
+
+    case ActionTypes.REELS_LOAD_FAILURE:
+      return { ...state, reelStatus: 'error', reelError: String(action.payload ?? 'Unknown error') };
 
     default:
       throw new Error(`appReducer: unknown action type "${action.type}"`);
