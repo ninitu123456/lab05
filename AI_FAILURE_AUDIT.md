@@ -40,4 +40,30 @@ Copy this template for each incident:
 - **Verification:** <how the fix was verified>
 -->
 
-_No incidents logged yet._
+### [AF-001] Constant exported from a component module breaks Fast Refresh
+- **Date:** 2026-11-27
+- **Exercise:** 0.1 (Step 6 — TabBar/TabPanel)
+- **Pattern ID:** Other (not in Slide 29 Top 5)
+- **Tool / Model:** Claude (chat assistant)
+- **Failure Prompt:**
+  > Build an accessible TabBar and a read-only TabPanel that share tab labels.
+- **AI Output (broken):**
+  ```jsx
+  // src/components/TabBar.jsx
+  export const TAB_LABELS = Object.freeze({ reels: 'Reels', evidence: 'Evidence', chat: 'Chat' });
+  export default function TabBar() { /* ... */ }
+  ```
+- **Root Cause:** The model co-located a shared constant with a component for convenience,
+  ignoring Vite's Fast Refresh rule that a `.jsx` module must export only components
+  (otherwise HMR falls back to full reload and resets reducer state).
+- **Corrected Diff:**
+  ```diff
+  - // src/components/TabBar.jsx
+  - export const TAB_LABELS = Object.freeze({ ... });
+  + // src/constants/tabs.js
+  + export const TAB_LABELS = Object.freeze({ ... });
+
+  - import { TAB_LABELS } from './TabBar.jsx';
+  + import { TAB_LABELS } from '../constants/tabs.js';
+  ```
+- **Verification:** `npm run lint` → `react(only-export-components)` warning gone; `npm run build` passes.
