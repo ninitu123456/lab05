@@ -50,3 +50,11 @@ Status: ⬜ todo · 🟨 in progress · ✅ done
 | 6 | Concurrency stress test | 100 parallel PATCH → `endorsements === 100` | ✅ |
 
 **Exercise 1.2 result:** ✅ Done — 6/12 commits. Verification: `docs/verification/ex1.2-atomic-inc.md`
+
+## Sprint 2 — Handcam POV 60fps Reels & Atomic Petition Counter
+| # | Task | Acceptance Criteria | Status |
+|---|------|---------------------|--------|
+| 1 | Vite proxy + API-backed feed | `/api` proxied to Express; feed loads from `GET /api/v2/reels`; no CORS; no secrets in client | ✅ |
+| 2 | `endorseReel()` + `REEL_ENDORSED` | Server count is source of truth; out-of-order responses never lower the count | ⬜ |
+| 3 | `EndorseButton` | Wired to `PATCH /api/v2/reels/:id/endorse`; rapid clicks allowed; pending + error states; 44px target | ⬜ |
+| 4 | Verification | Rapid scroll auto-pause; N clicks → +N in DB; UI matches DB after parallel stress | ⬜ |
