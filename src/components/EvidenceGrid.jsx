@@ -1,16 +1,14 @@
 import { useMemo } from 'react';
 import { useAppState } from '../context/useAppContext.js';
 import { getPageWindow } from '../utils/paginate.js';
+import { filterByTag } from '../utils/evidence.js';
 import EvidenceCard from './EvidenceCard.jsx';
 
 export default function EvidenceGrid() {
   const { evidenceList, evidenceStatus, evidenceError, filterTag, currentPage, pageSize } = useAppState();
 
   // ===== Pure derived pagination: ZERO secondary useEffect, ZERO local useState =====
-  const filtered = useMemo(
-    () => (filterTag ? evidenceList.filter((e) => e.tag === filterTag) : evidenceList),
-    [evidenceList, filterTag],
-  );
+  const filtered = useMemo(() => filterByTag(evidenceList, filterTag), [evidenceList, filterTag]);
 
   const { start, end } = getPageWindow(filtered.length, currentPage, pageSize);
 
