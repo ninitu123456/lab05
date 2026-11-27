@@ -4,6 +4,7 @@ import './index.css'
 import './styles/theme.css'
 import './styles/evidence.css'
 import './styles/reels.css'
+import './styles/ticker.css'
 import App from './App.jsx'
 import { AppProvider } from './context/AppProvider.jsx'
 

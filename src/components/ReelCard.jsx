@@ -1,4 +1,5 @@
 import { memo, useEffect, useRef, useState } from 'react';
+import TelemetryTicker from './TelemetryTicker.jsx';
 
 const VISIBLE_THRESHOLD = 0.75; // play only when ≥ 75% of the reel is on screen
 
@@ -69,6 +70,9 @@ function ReelCard({ reel }) {
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
       />
+
+      {/* Ticker pauses together with the reel (WCAG 2.2.2) */}
+      <TelemetryTicker items={reel.telemetry} running={isPlaying} />
 
       <div className="reel-card__overlay">
         <div className="reel-card__info">

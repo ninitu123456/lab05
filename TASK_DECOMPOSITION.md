@@ -34,5 +34,5 @@ Status: ⬜ todo · 🟨 in progress · ✅ done
 | 2 | Reels state + generic `useJsonLoader` | Evidence & reels share one AbortController-guarded loader | ✅ |
 | 3 | `ReelCard` auto-play lifecycle | `IntersectionObserver({ threshold: 0.75 })`; `play().catch()`; pause offscreen; `observer.disconnect()` teardown; `aria-pressed` toggle | ✅ |
 | 4 | `ReelFeed` + `reels.css` | `100dvh`; `scroll-snap-type: y mandatory`; `object-fit: cover`; CLS = 0 | ✅ |
-| 5 | `TelemetryTicker` | Native `@keyframes marquee` + `translate3d`; no `react-ticker`/MUI; stops under `prefers-reduced-motion` | ⬜ |
+| 5 | `TelemetryTicker` | Native `@keyframes marquee` + `translate3d`; no `react-ticker`/MUI; stops under `prefers-reduced-motion` | ✅ |
 | 6 | Integration + verification | Rapid scroll pauses offscreen video; ~60fps in Performance panel | ⬜ |
