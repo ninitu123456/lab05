@@ -7,7 +7,9 @@
     "dev": "node --env-file=.env --watch index.js",
     "start": "node --env-file=.env index.js",
     "seed": "node --env-file=.env scripts/seed.js",
-    "seed:reset": "node --env-file=.env scripts/seed.js --reset"
+    "seed:reset": "node --env-file=.env scripts/seed.js --reset",
+    "stress": "node --env-file=.env scripts/stress-endorse.js",
+    "race-demo": "node --env-file=.env scripts/race-demo.js"
   },
   "engines": {
     "node": ">=22"

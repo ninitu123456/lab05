@@ -47,4 +47,6 @@ Status: ⬜ todo · 🟨 in progress · ✅ done
 | 3 | Seed script | Imports `reels.json` with fixed `_id`s; idempotent re-run | ✅ |
 | 4 | Reels routes | `GET /api/v2/reels`; `PATCH /api/v2/reels/:id/endorse` via `findByIdAndUpdate` + `$inc`, `{ new: true, runValidators: true }`, 404 if missing | ✅ |
 | 5 | Error pipeline | Express 5 async errors → central handler; invalid id → 400; unknown route → 404; no stack leak | ✅ |
-| 6 | Concurrency stress test | 100 parallel PATCH → `endorsements === 100` | ⬜ |
+| 6 | Concurrency stress test | 100 parallel PATCH → `endorsements === 100` | ✅ |
+
+**Exercise 1.2 result:** ✅ Done — 6/12 commits. Verification: `docs/verification/ex1.2-atomic-inc.md`
