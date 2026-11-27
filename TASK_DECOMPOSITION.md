@@ -10,7 +10,7 @@ Status: ⬜ todo · 🟨 in progress · ✅ done
 | 3 | Pure `appReducer` | No side effects; returns new state; unknown action throws | ✅ |
 | 4 | `AppProvider` split context | State & dispatch in separate providers; `dataset.theme` synced in `useEffect([state.theme])` | ✅ |
 | 5 | `ThemeToggle` | Dispatch-only consumer; `className` used; theme toggles correctly dark ⇄ light | ⬜ |
-| 6 | `TabBar` + read-only consumers | `activeTab` switches `reels`/`evidence`/`chat` | ⬜ |
+| 6 | `TabBar` + read-only consumers | `activeTab` switches `reels`/`evidence`/`chat` | ✅ |
 | 7 | Profiler verification | ThemeToggle does not re-render on tab change | ⬜ |
 
 ## Exercise 0.2 — Zero-Effect Pagination & Container Queries
