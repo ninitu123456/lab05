@@ -7,7 +7,7 @@ Status: ⬜ todo · 🟨 in progress · ✅ done
 |---|------|---------------------|--------|
 | 1 | Scaffold Vite + React 19, gitignore `.env` | `npm run dev` works; `.env` ignored | ✅ |
 | 2 | Governance docs | rules, decomposition, AI audit committed | ✅ |
-| 3 | Pure `appReducer` | No side effects; returns new state; unknown action throws | ⬜ |
+| 3 | Pure `appReducer` | No side effects; returns new state; unknown action throws | ✅ |
 | 4 | `AppProvider` split context | State & dispatch in separate providers; `dataset.theme` synced in `useEffect([state.theme])` | ⬜ |
 | 5 | `ThemeToggle` | Dispatch-only consumer; `className` used; theme toggles correctly dark ⇄ light | ⬜ |
 | 6 | `TabBar` + read-only consumers | `activeTab` switches `reels`/`evidence`/`chat` | ⬜ |
