@@ -22,3 +22,14 @@ Status: ⬜ todo · 🟨 in progress · ✅ done
 | 4 | `FilterBar` + `Pagination` | Tags & `totalPages` derived; out-of-range page clamped at render; 44px targets | ✅ |
 | 5 | Responsive layout | `@container` queries, `100dvh`, `clamp()`; no fixed 800px container | ✅ |
 | 6 | Integration + verification | Evidence tab works; Challenge B criteria met; zero console key warnings | ✅ |
+
+
+## Exercise 1.1 — 60fps Vertical Reels & IntersectionObserver
+| # | Task | Acceptance Criteria | Status |
+|---|------|---------------------|--------|
+| 1 | Sample videos + `reels.json` | 4 MP4 (H.264, faststart) ≤ 5MB; `endorsements` numeric (ready for Ex 1.2) | ✅ |
+| 2 | Reels state + generic `useJsonLoader` | Evidence & reels share one AbortController-guarded loader | ⬜ |
+| 3 | `ReelCard` auto-play lifecycle | `IntersectionObserver({ threshold: 0.75 })`; `play().catch()`; pause offscreen; `observer.disconnect()` teardown; `aria-pressed` toggle | ⬜ |
+| 4 | `ReelFeed` + `reels.css` | `100dvh`; `scroll-snap-type: y mandatory`; `object-fit: cover`; CLS = 0 | ⬜ |
+| 5 | `TelemetryTicker` | Native `@keyframes marquee` + `translate3d`; no `react-ticker`/MUI; stops under `prefers-reduced-motion` | ⬜ |
+| 6 | Integration + verification | Rapid scroll pauses offscreen video; ~60fps in Performance panel | ⬜ |

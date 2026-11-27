@@ -1,0 +1,38 @@
+[
+  {
+    "_id": "6745f1b2d4e3c9a5fab20001",
+    "title": "Handcam POV #1 — Himass",
+    "player": "Himass",
+    "src": "/videos/reel-1.mp4",
+    "durationSec": 8,
+    "endorsements": 0,
+    "telemetry": ["FPS 144", "Ping 28 ms", "Input lag 3.9 ms", "APM 212", "Recoil Δ 0.42°", "Handcam sync ✓"]
+  },
+  {
+    "_id": "6745f1b2d4e3c9a5fab20002",
+    "title": "Telemetry overlay — TanVuu",
+    "player": "TanVuu",
+    "src": "/videos/reel-2.mp4",
+    "durationSec": 8,
+    "endorsements": 0,
+    "telemetry": ["FPS 165", "Ping 31 ms", "Input lag 4.2 ms", "APM 198", "Recoil Δ 0.38°", "Handcam sync ✓"]
+  },
+  {
+    "_id": "6745f1b2d4e3c9a5fab20003",
+    "title": "Handcam POV #2 — Himass",
+    "player": "Himass",
+    "src": "/videos/reel-3.mp4",
+    "durationSec": 8,
+    "endorsements": 0,
+    "telemetry": ["FPS 144", "Ping 26 ms", "Input lag 3.7 ms", "APM 225", "Recoil Δ 0.45°", "Handcam sync ✓"]
+  },
+  {
+    "_id": "6745f1b2d4e3c9a5fab20004",
+    "title": "Replay angle — TanVuu",
+    "player": "TanVuu",
+    "src": "/videos/reel-4.mp4",
+    "durationSec": 8,
+    "endorsements": 0,
+    "telemetry": ["FPS 165", "Ping 33 ms", "Input lag 4.0 ms", "APM 204", "Recoil Δ 0.40°", "Handcam sync ✓"]
+  }
+]
